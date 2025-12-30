@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlight Linear LED | Manufacturing & Solutions</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #050505; 
+            color: white; 
+            overflow-x: hidden; 
+            margin: 0;
+        }
+        
+        h1, h2, h3, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Selection Color */
+        ::selection {
+            background-color: #f7a600;
+            color: black;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        
+        .image-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+        }
+        
+        /* Swiper Pagination Customization */
+        .swiper-pagination-bullet { background: #fff; opacity: 0.3; width: 8px; height: 8px; transition: all 0.3s ease; }
+        .swiper-pagination-bullet-active { background: #f7a600; opacity: 1; width: 24px; border-radius: 4px; }
+        
+        /* Bespoke & Video Slider Specifics */
+        .custom-swiper-pagination .swiper-pagination-bullet { 
+            background: #fff; 
+            width: 40px; 
+            height: 2px; 
+            border-radius: 0; 
+            opacity: 0.4; 
+            margin: 0 5px !important; 
+            transition: all 0.3s ease;
+        }
+        .custom-swiper-pagination .swiper-pagination-bullet-active { 
+            background: #fff; 
+            opacity: 1; 
+            height: 3px; 
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            color: transparent;
+        }
+
+        .service-link:hover .service-num { color: #f7a600; transform: translateX(10px); }
+        .service-link:hover .service-title { color: white; transform: translateX(10px); }
+        .service-link:hover .service-arrow { opacity: 1; transform: translateX(0); }
+        
+        /* Reveal image animation */
+        .reveal-img {
+            opacity: 0;
+            transform: scale(1.1);
+            transition: all 0.5s ease-out;
+        }
+        .reveal-img.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Project Filter Active State */
+        .filter-btn.active {
+            color: white;
+        }
+        .filter-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #f7a600;
+            transition: width 0.3s ease;
+        }
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #f7a600;
+            transition: width 0.3s ease;
+        }
+
+        /* Animated Gradient Background for Architects Corner */
+        .gradient-animate {
+            background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #0f172a, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Helper for scroll animations */
+        .animate-on-scroll {
+            opacity: 0; /* Hidden by default until JS triggers it */
+        }
+
+        /* --- HERO SLIDER KEN BURNS ANIMATIONS --- */
+        @keyframes zoomInEffect {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+        @keyframes zoomOutEffect {
+            0% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .heroSwiper .swiper-slide {
+            overflow: hidden;
+        }
+
+        /* Apply styles generally to hero images */
+        .heroSwiper .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Ensure smooth reset when slide changes */
+            transition: transform 0.5s ease;
+        }
+
+        /* Odd Slides: Zoom Out (1, 3, 5...) */
+        /* Start slightly zoomed in so we can zoom out */
+        .heroSwiper .swiper-slide:nth-child(odd) img {
+            transform: scale(1.15);
+        }
+        /* Run animation when active */
+        .heroSwiper .swiper-slide-active:nth-child(odd) img {
+            animation: zoomOutEffect 7s linear forwards;
+        }
+
+        /* Even Slides: Zoom In (2, 4, 6...) */
+        /* Start at normal scale */
+        .heroSwiper .swiper-slide:nth-child(even) img {
+            transform: scale(1);
+        }
+        /* Run animation when active */
+        .heroSwiper .swiper-slide-active:nth-child(even) img {
+            animation: zoomInEffect 7s linear forwards;
+        }
+
+        /* --- LOADING ANIMATION STYLES --- */
+        .light-strip {
+            background: linear-gradient(90deg, transparent, #f7a600, #fff, #f7a600, transparent);
+            box-shadow: 0 0 50px 5px rgba(247, 166, 0, 0.9);
+            height: 1px;
+            width: 0%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .luxury-tracking {
+            letter-spacing: clamp(0.5em, 3vw, 1.5em);
+            text-indent: clamp(0.5em, 3vw, 1.5em); 
+        }
+
+        /* Initial state for the destination page - Hidden */
+        #main-site {
+            visibility: hidden;
+            opacity: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body class="antialiased bg-[#050505] text-white">
+
+    <!-- 1. CINEMATIC INTRO -->
+    <div id="intro-stage" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black">
+        <!-- The Ignition Beam -->
+        <div id="ignition-beam" class="light-strip"></div>
+
+        <!-- The Brand Reveal -->
+        <div id="brand-identity" class="text-center opacity-0 scale-95 transition-all px-4 w-full">
+            <h1 class="text-xl sm:text-2xl md:text-5xl font-extralight luxury-tracking mb-4 w-full text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                 <span class="font-extrabold">STARLIGHT LED</span>
+            </h1>
+            <div class="h-[1px] w-12 sm:w-20 bg-[#f7a600]/50 mx-auto mb-6"></div>
+            <p id="tagline" class="text-[20px] sm:text-[20px] uppercase tracking-[0.8em] text-[#f7a600] opacity-0 translate-y-4" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: bold;">
+                Illuminating Visionary Spaces
+            </p>
+        </div>
+    </div>
+
+    <!-- 2. MAIN WEBSITE CONTENT WRAPPER -->
+    <div id="main-site">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center transition-all duration-300 animate__animated animate__fadeInDown" id="navbar">
+        <div class="text-3xl font-bold tracking-tighter brand-font relative z-50 mix-blend-difference">Starlight<span class="text-[#f7a600]">.</span></div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8 text-xs uppercase tracking-[0.2em] font-medium mix-blend-difference z-50">
+            <a href="#" class="hover:text-[#f7a600] transition-colors duration-300 relative group">About Us</a>
+            
+            <div class="relative group">
+                <a href="#" class="hover:text-[#f7a600] transition-colors duration-300 flex items-center gap-1 cursor-pointer">
+                    Solutions <i class="fas fa-chevron-down text-[10px]"></i>
+                </a>
+                <!-- Dropdown -->
+                <div class="absolute top-full left-0 mt-4 w-56 bg-black/95 backdrop-blur-md border border-white/10 hidden group-hover:block p-4 space-y-3 shadow-2xl transform origin-top transition duration-200">
+                    <a href="#" class="block text-gray-400 hover:text-white hover:translate-x-2 transition-transform">Outdoor Lighting</a>
+                    <a href="#" class="block text-gray-400 hover:text-white hover:translate-x-2 transition-transform">Indoor Architectural</a>
+                    <a href="#" class="block text-gray-400 hover:text-white hover:translate-x-2 transition-transform">Furniture Integration</a>
+                    <a href="#" class="block text-gray-400 hover:text-white hover:translate-x-2 transition-transform">Hospitality Lighting</a>
+                    <a href="#" class="block text-gray-400 hover:text-white hover:translate-x-2 transition-transform">DMX Strip Applications</a>
+                </div>
+            </div>
+
+            <a href="#" class="hover:text-[#f7a600] transition-colors duration-300 relative group">Drivers & Controllers</a>
+            <a href="#" class="hover:text-[#f7a600] transition-colors duration-300 relative group">Gallery</a>
+            <a href="#" class="hover:text-[#f7a600] transition-colors duration-300 relative group">Testimonials</a>
+            <a href="#" class="hover:text-[#f7a600] transition-colors duration-300 relative group">Contact Us</a>
+        </div>
+
+        <button class="hidden md:block bg-white text-black hover:bg-[#f7a600] hover:text-white px-6 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 z-50">
+            Enquire
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-white z-50 text-xl mix-blend-difference">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-screen overflow-hidden flex items-center justify-center">
+        <!-- Background Slider Parallax -->
+        <div class="absolute inset-0 w-full h-[120%] -top-[10%] bg-black" id="hero-bg">
+            <div class="swiper heroSwiper w-full h-full">
+                <div class="swiper-wrapper">
+                    
+                    <!-- Slide 2: Indoor -->
+                    <div class="swiper-slide">
+                        <!-- Desktop Image -->
+                        <img src="images/heroslider2.png" class="hidden md:block w-full h-full object-cover opacity-100" alt="Indoor Lighting">
+                        <!-- Mobile Image -->
+                        <img src="images/mobilehero2.png" class="block md:hidden w-full h-full object-cover opacity-100" alt="Indoor Lighting Mobile">
+                        
+                        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent z-10 pointer-events-none"></div>
+
+                        <div class="absolute inset-0 flex items-end justify-center pb-60 z-20 pointer-events-none">
+                            <div class="text-center max-w-4xl px-6 hero-text-container">
+                                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">Hospitality Architectural</p>
+                                <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tighter leading-none">Sculpting Space<br>with Light.</h1>
+                                <p class="text-xl text-gray-300 font-light">Seamless architectural integration that transforms interiors.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 1: Outdoor -->
+                    <div class="swiper-slide">
+                        <!-- Desktop Image -->
+                        <img src="images/heroslider1.png" class="hidden md:block w-full h-full object-cover opacity-100" alt="Outdoor Lighting">
+                        <!-- Mobile Image -->
+                        <img src="images/mobilehero1.png" class="block md:hidden w-full h-full object-cover opacity-100" alt="Outdoor Lighting Mobile">
+                        
+                        <!-- Gradient Overlay - Bottom Only -->
+                        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent z-10 pointer-events-none"></div>
+
+                        <div class="absolute inset-0 flex items-end justify-center pb-60 z-20 pointer-events-none">
+                            <div class="text-center max-w-4xl px-6 hero-text-container">
+                                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4 animate-fade-up">Outdoor Lighting</p>
+                                <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tighter leading-none animate-fade-up">Weather the Storm.<br>Define the Horizon.</h1>
+                                <p class="text-xl text-gray-300 font-light animate-fade-up">IP-Rated linear solutions built to withstand the elements.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3: Furniture -->
+                    <div class="swiper-slide">
+                        <!-- Desktop Image -->
+                        <img src="images/heroslider3.png" class="hidden md:block w-full h-full object-cover opacity-100" alt="Furniture Integration">
+                        <!-- Mobile Image -->
+                        <img src="images/mobilehero3.png" class="block md:hidden w-full h-full object-cover opacity-100" alt="Furniture Integration Mobile">
+                        
+                        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent z-10 pointer-events-none"></div>
+
+                        <div class="absolute inset-0 flex items-end justify-center pb-60 z-20 pointer-events-none">
+                            <div class="text-center max-w-4xl px-6 hero-text-container">
+                                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">Theater Integration</p>
+                                <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tighter leading-none">The Invisible Detail<br>that Changes Everything.</h1>
+                                <p class="text-xl text-gray-300 font-light">Precision profile lighting for joinery and bespoke furniture.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 4: Hospitality -->
+                    <div class="swiper-slide">
+                         <!-- Desktop Image -->
+                        <img src="images/heroslider4.png" class="hidden md:block w-full h-full object-cover opacity-100" alt="Hospitality">
+                        <!-- Mobile Image -->
+                        <img src="images/mobilehero4.png" class="block md:hidden w-full h-full object-cover opacity-100" alt="Hospitality Mobile">
+
+                        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent z-10 pointer-events-none"></div>
+
+                        <div class="absolute inset-0 flex items-end justify-center pb-60 z-20 pointer-events-none">
+                            <div class="text-center max-w-4xl px-6 hero-text-container">
+                                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">Shopping Mall Lighting</p>
+                                <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tighter leading-none">Setting the Mood.<br>Elevating the Experience.</h1>
+                                <p class="text-xl text-gray-300 font-light">Curated lighting solutions for hotels, restaurants, and lounges.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        
+
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/80 pointer-events-none z-10"></div>
+        
+        <!-- Decorative Lines -->
+        <div class="absolute inset-0 container mx-auto border-x border-white/5 pointer-events-none z-0">
+            <div class="absolute top-0 left-1/3 w-[1px] h-full bg-white/5"></div>
+            <div class="absolute top-0 left-2/3 w-[1px] h-full bg-white/5"></div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 z-20 animate__animated animate__fadeInUp animate__delay-2s">
+            <span class="text-[10px] uppercase tracking-widest">Scroll</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
+        </div>
+    </header>
+
+  
+    <!-- Categories Grid (Solutions) -->
+    <section class="py-20 pb-10 relative z-20 bg-[#050505]">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Left Column Items -->
+                <a href="#" class="group relative h-[450px] md:col-start-1 md:row-start-1 overflow-hidden block bg-[#050505] category-card rounded-lg animate-on-scroll" data-animate="animate__fadeInLeft">
+                    <img src="images/gridimg1.png" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Outdoor">
+                    <div class="absolute inset-0 image-overlay flex flex-col justify-end p-10 transition-all duration-500">
+                        <span class="text-xs font-mono text-[#f7a600] mb-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">01</span>
+                        <h3 class="text-3xl font-bold transform translate-y-0 transition duration-500">Indoor Lighting</h3>
+                        <div class="h-[1px] w-0 bg-white mt-4 group-hover:w-full transition-all duration-700 ease-out"></div>
+                    </div>
+                </a>
+                
+                <a href="#" class="group relative h-[450px] md:col-start-1 md:row-start-2 overflow-hidden block bg-[#050505] category-card rounded-lg animate-on-scroll" data-animate="animate__fadeInLeft" style="transition-delay: 0.2s;">
+                    <img src="images/gridimg2.png" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Indoor">
+                    <div class="absolute inset-0 image-overlay flex flex-col justify-end p-10 transition-all duration-500">
+                        <span class="text-xs font-mono text-[#f7a600] mb-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">02</span>
+                        <h3 class="text-3xl font-bold">Outdoor Architectural</h3>
+                        <div class="h-[1px] w-0 bg-white mt-4 group-hover:w-full transition-all duration-700 ease-out"></div>
+                    </div>
+                </a>
+
+                <!-- Center Vertical Item (Furniture) -->
+                <a href="#" class="group relative h-[450px] md:h-full md:col-start-2 md:row-start-1 md:row-span-2 overflow-hidden block bg-[#050505] category-card rounded-lg animate-on-scroll" data-animate="animate__fadeInUp">
+                    <img src="images/gridverticle.png" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Furniture">
+                    <div class="absolute inset-0 image-overlay flex flex-col justify-end p-10 transition-all duration-500">
+                        <span class="text-xs font-mono text-[#f7a600] mb-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">03</span>
+                        <h3 class="text-3xl md:text-5xl font-bold">Lighting Solutions</h3>
+                        <p class="text-gray-400 mt-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-500 hidden md:block">The Invisible Detail</p>
+                        <div class="h-[1px] w-0 bg-white mt-6 group-hover:w-full transition-all duration-700 ease-out"></div>
+                    </div>
+                </a>
+
+                <!-- Right Column Items -->
+                <a href="#" class="group relative h-[450px] md:col-start-3 md:row-start-1 overflow-hidden block bg-[#050505] category-card rounded-lg animate-on-scroll" data-animate="animate__fadeInRight">
+                    <img src="images/gridimg3.png" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Hospitality">
+                    <div class="absolute inset-0 image-overlay flex flex-col justify-end p-10 transition-all duration-500">
+                        <span class="text-xs font-mono text-[#f7a600] mb-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">04</span>
+                        <h3 class="text-3xl font-bold">Shopping Mall Lighting</h3>
+                        <div class="h-[1px] w-0 bg-white mt-4 group-hover:w-full transition-all duration-700 ease-out"></div>
+                    </div>
+                </a>
+
+                <a href="#" class="group relative h-[450px] md:col-start-3 md:row-start-2 overflow-hidden block bg-[#050505] category-card rounded-lg animate-on-scroll" data-animate="animate__fadeInRight" style="transition-delay: 0.2s;">
+                    <img src="images/gridimg4.png" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="DMX Strip">
+                    <div class="absolute inset-0 image-overlay flex flex-col justify-end p-10 transition-all duration-500">
+                        <span class="text-xs font-mono text-[#f7a600] mb-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">05</span>
+                        <h3 class="text-3xl font-bold">Office Lighting</h3>
+                        <div class="h-[1px] w-0 bg-white mt-4 group-hover:w-full transition-all duration-700 ease-out"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services (From Concept to Reality) -->
+    <section class="py-24 bg-black relative border-t border-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-24">
+                
+                <!-- Left: Text List -->
+                <div class="w-full lg:w-1/2 z-10 animate-on-scroll" data-animate="animate__fadeInLeft">
+                    <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-6">Our Process</p>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-12">From Concept to Reality</h2>
+                    
+                    <div class="space-y-4" id="service-list">
+                        <!-- Item 1 -->
+                        <a href="#" class="service-link block group py-8 border-b border-gray-800 transition-colors hover:border-[#f7a600]" data-img="images/process1.png">
+                            <div class="flex flex-col">
+                                <div class="flex items-center justify-between mb-4 lg:mb-0">
+                                    <div class="flex items-baseline gap-6">
+                                        <span class="service-num font-mono text-gray-600 text-sm transition-all duration-300 group-hover:text-[#f7a600]">01</span>
+                                        <h3 class="service-title text-2xl md:text-4xl font-light text-gray-400 transition-all duration-300 group-hover:text-white">Consultation</h3>
+                                    </div>
+                                    <i class="service-arrow fas fa-arrow-right text-[#f7a600] opacity-0 transform -translate-x-4 transition-all duration-300 hidden lg:block"></i>
+                                </div>
+                                <p class="text-gray-500 text-sm mt-2 lg:ml-12 lg:max-w-md opacity-0 group-hover:opacity-100 transition duration-300 h-0 group-hover:h-auto overflow-hidden">We analyze your architectural drawings and lighting needs.</p>
+                                <!-- Mobile Image -->
+                                <div class="lg:hidden w-full h-[250px] rounded-lg overflow-hidden mt-4 opacity-100 group-hover:opacity-100 transition duration-500">
+                                    <img src="images/process1.png" class="w-full h-full object-cover" alt="Consultation">
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Item 2 -->
+                        <a href="#" class="service-link block group py-8 border-b border-gray-800 transition-colors hover:border-[#f7a600]" data-img="images/process2.png">
+                            <div class="flex flex-col">
+                                <div class="flex items-center justify-between mb-4 lg:mb-0">
+                                    <div class="flex items-baseline gap-6">
+                                        <span class="service-num font-mono text-gray-600 text-sm transition-all duration-300 group-hover:text-[#f7a600]">02</span>
+                                        <h3 class="service-title text-2xl md:text-4xl font-light text-gray-400 transition-all duration-300 group-hover:text-white">Design & Simulation</h3>
+                                    </div>
+                                    <i class="service-arrow fas fa-arrow-right text-[#f7a600] opacity-0 transform -translate-x-4 transition-all duration-300 hidden lg:block"></i>
+                                </div>
+                                <p class="text-gray-500 text-sm mt-2 lg:ml-12 lg:max-w-md opacity-0 group-hover:opacity-100 transition duration-300 h-0 group-hover:h-auto overflow-hidden">We calculate Lux levels and select the perfect profiles.</p>
+                                 <!-- Mobile Image -->
+                                 <div class="lg:hidden w-full h-[250px] rounded-lg overflow-hidden mt-4 opacity-100 group-hover:opacity-100 transition duration-500">
+                                    <img src="images/process2.png" class="w-full h-full object-cover" alt="Design & Simulation">
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Item 3 -->
+                        <a href="#" class="service-link block group py-8 border-b border-gray-800 transition-colors hover:border-[#f7a600]" data-img="images/process3.png">
+                            <div class="flex flex-col">
+                                <div class="flex items-center justify-between mb-4 lg:mb-0">
+                                    <div class="flex items-baseline gap-6">
+                                        <span class="service-num font-mono text-gray-600 text-sm transition-all duration-300 group-hover:text-[#f7a600]">03</span>
+                                        <h3 class="service-title text-2xl md:text-4xl font-light text-gray-400 transition-all duration-300 group-hover:text-white">Precision Manufacturing</h3>
+                                    </div>
+                                    <i class="service-arrow fas fa-arrow-right text-[#f7a600] opacity-0 transform -translate-x-4 transition-all duration-300 hidden lg:block"></i>
+                                </div>
+                                <p class="text-gray-500 text-sm mt-2 lg:ml-12 lg:max-w-md opacity-0 group-hover:opacity-100 transition duration-300 h-0 group-hover:h-auto overflow-hidden">Custom cutting, soldering, and assembly in our factory.</p>
+                                 <!-- Mobile Image -->
+                                 <div class="lg:hidden w-full h-[250px] rounded-lg overflow-hidden mt-4 opacity-100 group-hover:opacity-100 transition duration-500">
+                                    <img src="images/process3.png" class="w-full h-full object-cover" alt="Precision Manufacturing">
+                                </div>
+                            </div>
+                        </a>
+                         <!-- Item 4 -->
+                         <a href="#" class="service-link block group py-8 border-b border-gray-800 transition-colors hover:border-[#f7a600]" data-img="images/process4.png">
+                            <div class="flex flex-col">
+                                <div class="flex items-center justify-between mb-4 lg:mb-0">
+                                    <div class="flex items-baseline gap-6">
+                                        <span class="service-num font-mono text-gray-600 text-sm transition-all duration-300 group-hover:text-[#f7a600]">04</span>
+                                        <h3 class="service-title text-2xl md:text-4xl font-light text-gray-400 transition-all duration-300 group-hover:text-white">Installation Support</h3>
+                                    </div>
+                                    <i class="service-arrow fas fa-arrow-right text-[#f7a600] opacity-0 transform -translate-x-4 transition-all duration-300 hidden lg:block"></i>
+                                </div>
+                                <p class="text-gray-500 text-sm mt-2 lg:ml-12 lg:max-w-md opacity-0 group-hover:opacity-100 transition duration-300 h-0 group-hover:h-auto overflow-hidden">On-site guidance to ensure the perfect finish.</p>
+                                 <!-- Mobile Image -->
+                                 <div class="lg:hidden w-full h-[250px] rounded-lg overflow-hidden mt-4 opacity-100 group-hover:opacity-100 transition duration-500">
+                                    <img src="images/process4.png" class="w-full h-full object-cover" alt="Installation Support">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Image Preview (Fixed - Desktop Only) -->
+                <div class="hidden lg:block w-1/2 relative h-[600px] animate-on-scroll" data-animate="animate__fadeInRight">
+                    <div class="sticky top-24 w-full h-full rounded-lg overflow-hidden border border-white/5 bg-[#111]">
+                        <!-- Dynamic Image Container -->
+                         <img id="service-img-preview" src="images/process2.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Service Preview">
+                         
+                         <!-- Overlay Gradient -->
+                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                         
+                         <!-- Decorative Text -->
+                         <div class="absolute bottom-8 left-8">
+                             <p class="text-xs uppercase tracking-widest text-[#f7a600] mb-2">Process</p>
+                             <h4 class="text-xl font-bold text-white" id="service-img-caption">Consultation</h4>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Press/Magazine Section -->
+    <section class="py-24 bg-[#050505] border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-on-scroll" data-animate="animate__fadeInUp">
+                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">Press Coverage</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-2">Homes India Magazine</h2>
+                <p class="text-gray-400 text-sm">Featured in the October 2024 Edition</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group relative aspect-[3/4] overflow-hidden bg-[#111] border border-white/10 animate-on-scroll" data-animate="animate__fadeInUp">
+                    <img src="images/magazine1.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Front Page">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <p class="text-white text-xs font-bold uppercase tracking-widest text-center">Front Cover</p>
+                    </div>
+                </div>
+                <div class="group relative aspect-[3/4] overflow-hidden bg-[#111] border border-white/10 animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.1s;">
+                    <img src="images/magazine2.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Feature Page 1">
+                     <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <p class="text-white text-xs font-bold uppercase tracking-widest text-center">Inside Story</p>
+                    </div>
+                </div>
+                <div class="group relative aspect-[3/4] overflow-hidden bg-[#111] border border-white/10 animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.2s;">
+                    <img src="images/magazine3.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Feature Page 2">
+                     <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <p class="text-white text-xs font-bold uppercase tracking-widest text-center">Project Highlight</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Project Video Slider (Text Below Video) -->
+    <section class="py-24 bg-[#050505] border-t border-white/5 relative group">
+        <div class="container mx-auto px-6 mb-10 flex justify-between items-end">
+             <div class="animate-on-scroll" data-animate="animate__fadeInUp">
+                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">Featured Works</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Project Spotlight</h2>
+            </div>
+            <!-- External Controls -->
+            <div class="flex gap-4 animate-on-scroll" data-animate="animate__fadeInUp">
+                <button class="project-video-prev w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition duration-300">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="project-video-next w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition duration-300">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="swiper projectVideoSwiper w-full animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.2s;">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="container mx-auto px-6">
+                        <!-- Video Container - Cinematic Ratio -->
+                        <div class="relative w-full aspect-[16/9] md:aspect-[21/9] bg-[#111] mb-8 overflow-hidden group/video">
+                            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-90 group-hover/video:opacity-100 transition duration-1000 scale-105 group-hover/video:scale-100">
+                                <source src="images/projectvideo1.mp4" type="video/mp4">
+                            </video>
+                            <div class="absolute inset-0 pointer-events-none border border-white/5"></div>
+                        </div>
+                        
+                        <!-- Details Below -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-white/10 pt-8">
+                            <div class="md:col-span-3">
+                                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-1">Location</p>
+                                <p class="text-xl text-white font-medium">Bhopal, India</p>
+                            </div>
+                            <div class="md:col-span-7">
+                                <h3 class="text-3xl md:text-4xl font-bold text-white mb-3">Taj Lakefront</h3>
+                                <p class="text-gray-400 font-light text-lg leading-relaxed">Reflecting royalty upon the Upper Lake. An architectural jewel where heritage design meets contemporary illumination.</p>
+                            </div>
+                            <div class="md:col-span-2 flex md:justify-end items-start">
+                                <a href="#" class="inline-flex items-center gap-2 text-white hover:text-[#f7a600] transition text-xs font-bold uppercase tracking-widest group/link">
+                                    Details 
+                                    <i class="fas fa-arrow-right transform group-hover/link:translate-x-1 transition"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="container mx-auto px-6">
+                        <div class="relative w-full aspect-[16/9] md:aspect-[21/9] bg-[#111] mb-8 overflow-hidden group/video">
+                            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-90 group-hover/video:opacity-100 transition duration-1000 scale-105 group-hover/video:scale-100">
+                                <source src="images/projectvideo2.mp4" type="video/mp4">
+                            </video>
+                            <div class="absolute inset-0 pointer-events-none border border-white/5"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-white/10 pt-8">
+                            <div class="md:col-span-3">
+                                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-1">Location</p>
+                                <p class="text-xl text-white font-medium">Pune, India</p>
+                            </div>
+                            <div class="md:col-span-7">
+                                <h3 class="text-3xl md:text-4xl font-bold text-white mb-3">Nyati Plaza</h3>
+                                <p class="text-gray-400 font-light text-lg leading-relaxed">A beacon of modern commerce. Dynamic facade lighting transforms this retail hub into a vibrant urban landmark.</p>
+                            </div>
+                            <div class="md:col-span-2 flex md:justify-end items-start">
+                                <a href="#" class="inline-flex items-center gap-2 text-white hover:text-[#f7a600] transition text-xs font-bold uppercase tracking-widest group/link">
+                                    Details 
+                                    <i class="fas fa-arrow-right transform group-hover/link:translate-x-1 transition"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Projects with Filtering (Gallery) -->
+    <section class="py-24 bg-black border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-16 animate-on-scroll" data-animate="animate__fadeInUp">
+                <div class="mb-8 md:mb-0 text-center md:text-left">
+                    <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">Gallery</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Project Showcase</h2>
+                </div>
+                
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+                    <button class="filter-btn text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition duration-300 active relative pb-2" data-filter="all">All</button>
+                    <button class="filter-btn text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition duration-300 relative pb-2" data-filter="residential">Residential</button>
+                    <button class="filter-btn text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition duration-300 relative pb-2" data-filter="commercial">Commercial</button>
+                    <button class="filter-btn text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition duration-300 relative pb-2" data-filter="hospitality">Hospitality</button>
+                    <button class="filter-btn text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition duration-300 relative pb-2" data-filter="exterior">Outdoor</button>
+                </div>
+            </div>
+
+            <!-- Project Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
+                <!-- Project 1: Commercial -->
+                <div class="project-item group relative h-[500px] overflow-hidden cursor-pointer animate-on-scroll" data-animate="animate__fadeInUp" data-category="commercial">
+                    <img src="images/projectimg1.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Commercial Project">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition duration-500">
+                        <p class="text-[#f7a600] text-xs font-bold uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Commercial</p>
+                        <h3 class="text-2xl font-bold text-white">Nyati Plaza, Pune</h3>
+                    </div>
+                </div>
+
+                <!-- Project 2: Residential -->
+                <div class="project-item group relative h-[500px] overflow-hidden cursor-pointer animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.1s;" data-category="residential">
+                    <img src="images/projectimg2.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Residential Project">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition duration-500">
+                        <p class="text-[#f7a600] text-xs font-bold uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Residential</p>
+                        <h3 class="text-2xl font-bold text-white">Theatre Linear Lighting</h3>
+                    </div>
+                </div>
+
+                <!-- Project 3: Hospitality -->
+                <div class="project-item group relative h-[500px] overflow-hidden cursor-pointer animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.2s;" data-category="hospitality">
+                    <img src="images/projectimg3.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Hospitality Project">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition duration-500">
+                        <p class="text-[#f7a600] text-xs font-bold uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Hospitality</p>
+                        <h3 class="text-2xl font-bold text-white">The Grand Lobby</h3>
+                    </div>
+                </div>
+
+                <!-- Project 4: Exterior -->
+                <div class="project-item group relative h-[500px] overflow-hidden cursor-pointer animate-on-scroll" data-animate="animate__fadeInUp" data-category="exterior">
+                    <img src="images/projectimg4.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Exterior Project">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition duration-500">
+                         <p class="text-[#f7a600] text-xs font-bold uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Outdoor</p>
+                        <h3 class="text-2xl font-bold text-white">Hospitality Lighting</h3>
+                    </div>
+                </div>
+
+                <!-- Project 5: Residential -->
+                <div class="project-item group relative h-[500px] overflow-hidden cursor-pointer animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.1s;" data-category="residential">
+                    <img src="images/projectimg5.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Residential Project">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition duration-500">
+                        <p class="text-[#f7a600] text-xs font-bold uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Residential</p>
+                        <h3 class="text-2xl font-bold text-white">Office Space Lighting</h3>
+                    </div>
+                </div>
+
+                <!-- Project 6: Commercial -->
+                <div class="project-item group relative h-[500px] overflow-hidden cursor-pointer animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.2s;" data-category="commercial">
+                    <img src="images/projectimg6.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-100 group-hover:opacity-100" alt="Commercial Project">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition duration-500">
+                        <p class="text-[#f7a600] text-xs font-bold uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Commercial</p>
+                        <h3 class="text-2xl font-bold text-white">Hospitality Lighting</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-[#050505] relative overflow-hidden border-t border-white/5">
+        <div class="container mx-auto px-6 text-center animate-on-scroll" data-animate="animate__fadeInUp">
+            <i class="fas fa-quote-left text-4xl text-[#f7a600] mb-8 opacity-50"></i>
+            
+            <div class="swiper testimonialSwiper max-w-4xl mx-auto pb-12">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <h3 class="text-2xl md:text-4xl font-light italic leading-relaxed mb-8">"Starlight provided the exact technical solution we needed for a complex facade project. Their manufacturing precision is impressive."</h3>
+                        <div class="flex items-center justify-center gap-4">
+                            <div class="text-left">
+                                <p class="text-white font-bold uppercase tracking-widest text-sm">Rahul Mehta</p>
+                                <p class="text-gray-500 text-xs">Senior Architect</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <h3 class="text-2xl md:text-4xl font-light italic leading-relaxed mb-8">"The quality of the linear profiles and the CRI of the LEDs made a huge difference in our retail showroom project."</h3>
+                        <div class="flex items-center justify-center gap-4">
+                            <div class="text-left">
+                                <p class="text-white font-bold uppercase tracking-widest text-sm">Anjali Desai</p>
+                                <p class="text-gray-500 text-xs">Interior Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <h3 class="text-2xl md:text-4xl font-light italic leading-relaxed mb-8">"A true partner in design. From the initial concept to the final installation, the LUX team provided exceptional support and technical expertise."</h3>
+                        <div class="flex items-center justify-center gap-4">
+                            <div class="text-left">
+                                <p class="text-white font-bold uppercase tracking-widest text-sm">Michael Chen</p>
+                                <p class="text-gray-500 text-xs">Principal, Urban Construct</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination !bottom-0"></div>
+            </div>
+        </div>
+    </section>
+
+    
+
+      <!-- Intro & Technical Edge Section -->
+    <section class="py-20 bg-[#050505] border-b border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-20 animate-on-scroll" data-animate="animate__fadeInUp">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">We Don't Just Sell Lights.<br>We Manufacture Solutions.</h2>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                    We work with Architects, Interior Designers, and PMCs to create custom linear lighting setups. We handle the technical side—from simulation to manufacturing—so your design vision comes to life exactly as imagined.
+                </p>
+            </div>
+
+            <!-- Technical Edge / Quality Assurance Strip with Boxicons -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="flex flex-col items-center text-center group animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mb-4 group-hover:border-[#f7a600] transition duration-300">
+                        <i class='bx bx-sun text-2xl text-[#f7a600]'></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-2">CRI > 95</h4>
+                    <p class="text-gray-500 text-xs">True Color Rendering</p>
+                </div>
+                <div class="flex flex-col items-center text-center group animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mb-4 group-hover:border-[#f7a600] transition duration-300">
+                        <i class='bx bx-bar-chart-alt-2 text-2xl text-[#f7a600]'></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-2">3-Step MacAdam</h4>
+                    <p class="text-gray-500 text-xs">Uniform Consistency</p>
+                </div>
+                <div class="flex flex-col items-center text-center group animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mb-4 group-hover:border-[#f7a600] transition duration-300">
+                        <i class='bx bx-shield-quarter text-2xl text-[#f7a600]'></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-2">5-Year Warranty</h4>
+                    <p class="text-gray-500 text-xs">Quality Guaranteed</p>
+                </div>
+                <div class="flex flex-col items-center text-center group animate-on-scroll" data-animate="animate__fadeInUp" style="transition-delay: 0.4s;">
+                    <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mb-4 group-hover:border-[#f7a600] transition duration-300">
+                        <i class='bx bx-bolt-circle text-2xl text-[#f7a600]'></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-2">Meanwell Powered</h4>
+                    <p class="text-gray-500 text-xs">Reliable Drivers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Us Section -->
+    <section class="py-32 bg-[#0a0a0a] border-t border-white/5 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2 relative animate-on-scroll" data-animate="animate__fadeInLeft">
+                    <!-- Image with decorative element -->
+                    <div class="relative z-10 overflow-hidden">
+                        <img src="images/aboutus.png" alt="Manufacturing" class="w-full h-[600px] object-cover transition duration-700">
+                    </div>
+                    <!-- Decorative Border/Box behind -->
+                    <div class="absolute -top-6 -left-6 w-full h-full border border-white/10 z-0 hidden md:block"></div>
+                </div>
+                <div class="lg:w-1/2 animate-on-scroll" data-animate="animate__fadeInRight">
+                    <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-6">Who We Are</p>
+                    <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">Quality. Customization. <span class="text-outline">Service.</span></h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        We are serious manufacturers, not just traders. Our facility creates custom linear lighting solutions tailored to your specific architectural needs. We believe in providing the technical backbone that allows architects and designers to shine.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 mb-10">
+                        <div>
+                            <h4 class="text-3xl font-bold text-white mb-2">22+</h4>
+                            <p class="text-xs uppercase tracking-widest text-gray-500">Years Experience</p>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-bold text-white mb-2">500+</h4>
+                            <p class="text-xs uppercase tracking-widest text-gray-500">Global Projects</p>
+                        </div>
+                    </div>
+                    <button class="border-b border-white pb-1 text-sm uppercase tracking-widest hover:text-[#f7a600] hover:border-[#f7a600] transition">View Our History</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Our Products Card Slider (RESTORED) -->
+    <section class="py-24 bg-[#080808] border-t border-white/5 overflow-hidden">
+        <div class="container mx-auto px-6 mb-12 flex justify-between items-end">
+            <div class="animate-on-scroll" data-animate="animate__fadeInLeft">
+                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">New Arrivals</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Our Products</h2>
+            </div>
+            <!-- Slider Controls -->
+            <div class="hidden md:flex gap-4 animate-on-scroll" data-animate="animate__fadeInRight">
+                <button class="product-prev-btn w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition duration-300">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="product-next-btn w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition duration-300">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6">
+            <div class="swiper productSwiper pb-12 animate-on-scroll" data-animate="animate__fadeInUp">
+                <div class="swiper-wrapper">
+                    <!-- Product 1 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-[400px] w-full bg-[#121212] mb-6 overflow-hidden rounded-sm">
+                                <img src="images/product4.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" alt="Product 1">
+                                <!-- Hover Overlay Button -->
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <button class="bg-white text-black px-6 py-3 uppercase text-xs font-bold tracking-widest hover:bg-[#f7a600] hover:text-white transition">View Product</button>
+                                </div>
+                                <div class="absolute top-4 left-4 bg-[#f7a600] text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">New</div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1 group-hover:text-[#f7a600] transition">Quantum Line</h3>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Linear System</p>
+                            <div class="flex items-center gap-4 text-xs text-gray-400 font-mono border-t border-white/10 pt-3 mt-3">
+                                <span>3000K</span>
+                                <span>24W/m</span>
+                                <span>CRI 90+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-[400px] w-full bg-[#121212] mb-6 overflow-hidden rounded-sm">
+                                <img src="images/product1.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" alt="Product 2">
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <button class="bg-white text-black px-6 py-3 uppercase text-xs font-bold tracking-widest hover:bg-[#f7a600] hover:text-white transition">View Product</button>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1 group-hover:text-[#f7a600] transition">Apex Spot</h3>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Track Lighting</p>
+                             <div class="flex items-center gap-4 text-xs text-gray-400 font-mono border-t border-white/10 pt-3 mt-3">
+                                <span>4000K</span>
+                                <span>12W</span>
+                                <span>IP20</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-[400px] w-full bg-[#121212] mb-6 overflow-hidden rounded-sm">
+                                <img src="images/product2.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" alt="Product 3">
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <button class="bg-white text-black px-6 py-3 uppercase text-xs font-bold tracking-widest hover:bg-[#f7a600] hover:text-white transition">View Product</button>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1 group-hover:text-[#f7a600] transition">Luna Pendant</h3>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Decorative</p>
+                             <div class="flex items-center gap-4 text-xs text-gray-400 font-mono border-t border-white/10 pt-3 mt-3">
+                                <span>2700K</span>
+                                <span>15W</span>
+                                <span>Dimmable</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-[400px] w-full bg-[#121212] mb-6 overflow-hidden rounded-sm">
+                                <img src="images/product4.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" alt="Product 4">
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <button class="bg-white text-black px-6 py-3 uppercase text-xs font-bold tracking-widest hover:bg-[#f7a600] hover:text-white transition">View Product</button>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1 group-hover:text-[#f7a600] transition">Neon Flex II</h3>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Outdoor Linear</p>
+                             <div class="flex items-center gap-4 text-xs text-gray-400 font-mono border-t border-white/10 pt-3 mt-3">
+                                <span>RGBW</span>
+                                <span>IP67</span>
+                                <span>Flexible</span>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Product 5 -->
+                     <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-[400px] w-full bg-[#121212] mb-6 overflow-hidden rounded-sm">
+                                <img src="images/product3.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" alt="Product 5">
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <button class="bg-white text-black px-6 py-3 uppercase text-xs font-bold tracking-widest hover:bg-[#f7a600] hover:text-white transition">View Product</button>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1 group-hover:text-[#f7a600] transition">Core Downlight</h3>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Recessed</p>
+                             <div class="flex items-center gap-4 text-xs text-gray-400 font-mono border-t border-white/10 pt-3 mt-3">
+                                <span>3500K</span>
+                                <span>18W</span>
+                                <span>Low Glare</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogues & Brochures (Swiper) (RESTORED) -->
+    <section class="py-24 bg-[#0a0a0a] overflow-hidden border-t border-white/5">
+        <div class="container mx-auto px-6 mb-12 flex justify-between items-end">
+            <div class="animate-on-scroll" data-animate="animate__fadeInLeft">
+                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">Documentation</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Catalogues & Brochures</h2>
+            </div>
+            <div class="hidden md:flex gap-4 animate-on-scroll" data-animate="animate__fadeInRight">
+                <button class="swiper-prev-btn w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition duration-300">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="swiper-next-btn w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition duration-300">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="swiper mySwiper w-full pl-6 md:pl-[max(1.5rem,calc((100vw-1280px)/2+1.5rem))] animate-on-scroll" data-animate="animate__fadeInUp">
+            <div class="swiper-wrapper pb-16">
+                <!-- Slide 1 -->
+                <div class="swiper-slide w-[300px] md:w-[400px]">
+                    <div class="bg-[#121212] p-8 h-[550px] flex flex-col justify-between group cursor-pointer border border-white/5 hover:border-[#f7a600]/50 transition duration-500 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-white/5 to-transparent rounded-bl-full"></div>
+                        
+                        <div class="h-[320px] bg-[#1a1a1a] overflow-hidden relative shadow-2xl group-hover:shadow-[#f7a600]/20 transition-all duration-500">
+                             <img src="images/heroslider5.png" class="w-full h-full object-cover opacity-100 group-hover:scale-105 transition duration-700">
+                             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500"></div>
+                             <div class="absolute bottom-6 -left-2 text-6xl font-black text-white/10 -rotate-90 origin-bottom-left leading-none">VOL.1</div>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-2 h-2 bg-[#f7a600] rounded-full"></span>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">2024 Edition</p>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-[#f7a600] transition">Linealight Collection</h3>
+                            <p class="text-sm text-gray-500 mt-2 line-clamp-2">Comprehensive guide to our indoor and outdoor lighting solutions.</p>
+                        </div>
+                        <div class="w-full h-[1px] bg-white/10 mt-4 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-[#f7a600] transform -translate-x-full group-hover:translate-x-0 transition duration-500"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide w-[300px] md:w-[400px]">
+                    <div class="bg-[#121212] p-8 h-[550px] flex flex-col justify-between group cursor-pointer border border-white/5 hover:border-[#f7a600]/50 transition duration-500 relative overflow-hidden">
+                       <div class="h-[320px] bg-[#1a1a1a] overflow-hidden relative shadow-2xl group-hover:shadow-[#f7a600]/20 transition-all duration-500">
+                             <img src="images/heroslider3.png" class="w-full h-full object-cover opacity-100 group-hover:scale-105 transition duration-700 filter grayscale group-hover:grayscale-0">
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-2 h-2 bg-[#f7a600] rounded-full"></span>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Tech Specs</p>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-[#f7a600] transition">Maestro Quattro</h3>
+                            <p class="text-sm text-gray-500 mt-2 line-clamp-2">Technical datasheets and installation guides for the Maestro series.</p>
+                        </div>
+                        <div class="w-full h-[1px] bg-white/10 mt-4 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-[#f7a600] transform -translate-x-full group-hover:translate-x-0 transition duration-500"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide w-[300px] md:w-[400px]">
+                    <div class="bg-[#121212] p-8 h-[550px] flex flex-col justify-between group cursor-pointer border border-white/5 hover:border-[#f7a600]/50 transition duration-500 relative overflow-hidden">
+                         <div class="h-[320px] bg-[#1a1a1a] overflow-hidden relative shadow-2xl group-hover:shadow-[#f7a600]/20 transition-all duration-500">
+                             <img src="images/heroslider6.png" class="w-full h-full object-cover opacity-100 group-hover:scale-105 transition duration-700 filter grayscale group-hover:grayscale-0">
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-2 h-2 bg-[#f7a600] rounded-full"></span>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Exterior</p>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-[#f7a600] transition">Buzzer Q Series</h3>
+                            <p class="text-sm text-gray-500 mt-2 line-clamp-2">High-performance exterior applications for commercial spaces.</p>
+                        </div>
+                        <div class="w-full h-[1px] bg-white/10 mt-4 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-[#f7a600] transform -translate-x-full group-hover:translate-x-0 transition duration-500"></div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Slide 4 -->
+                 <div class="swiper-slide w-[300px] md:w-[400px]">
+                    <div class="bg-[#121212] p-8 h-[550px] flex flex-col justify-between group cursor-pointer border border-white/5 hover:border-[#f7a600]/50 transition duration-500 relative overflow-hidden">
+                         <div class="h-[320px] bg-[#1a1a1a] overflow-hidden relative shadow-2xl group-hover:shadow-[#f7a600]/20 transition-all duration-500">
+                             <img src="images/heroslider7.png" class="w-full h-full object-cover opacity-100 group-hover:scale-105 transition duration-700">
+                             <div class="absolute inset-0 bg-[#f7a600]/20 mix-blend-overlay"></div>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-2 h-2 bg-[#f7a600] rounded-full"></span>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Design Guide</p>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-[#f7a600] transition">Architectural Vol. 2</h3>
+                            <p class="text-sm text-gray-500 mt-2 line-clamp-2">Inspiration and layouts for modern architectural projects.</p>
+                        </div>
+                        <div class="w-full h-[1px] bg-white/10 mt-4 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-[#f7a600] transform -translate-x-full group-hover:translate-x-0 transition duration-500"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Architects' Corner (Downloads) -->
+    <section class="py-24 overflow-hidden border-t border-white/5 gradient-animate">
+        <div class="container mx-auto px-6 mb-12 flex justify-between items-end">
+            <div class="animate-on-scroll" data-animate="animate__fadeInLeft">
+                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">Resources</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Architects' Corner</h2>
+            </div>
+            <div class="hidden md:flex gap-4 animate-on-scroll" data-animate="animate__fadeInRight">
+                <button class="bg-[#f7a600] hover:bg-[#d99000] text-white px-6 py-3 uppercase text-xs font-bold tracking-widest transition">
+                    <i class="fas fa-download mr-2"></i> Corporate Profile
+                </button>
+                <button class="border border-white hover:bg-white hover:text-black text-white px-6 py-3 uppercase text-xs font-bold tracking-widest transition">
+                    View Tech Specs
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BeSpoke Lighting Section (Swiper Slider - RESTORED) -->
+    <section class="relative h-[80vh] bg-black overflow-hidden">
+        <div class="swiper bespoke-swiper w-full h-full">
+            <div class="swiper-wrapper">
+                <!-- Slide 1: Residential -->
+                <div class="swiper-slide relative flex items-center">
+                    <div class="absolute inset-0 z-0">
+                        <img src="images/heroslider5.png" class="w-full h-full object-cover opacity-60" alt="Residential Harmony">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent z-10"></div>
+                    <div class="relative z-20 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2">
+                        <div class="animate-on-scroll" data-animate="animate__fadeInLeft">
+                            <span class="inline-block py-1 px-3 border border-white/30 rounded-full text-[10px] uppercase tracking-widest mb-6 backdrop-blur-sm">Residential</span>
+                            <h2 class="text-5xl md:text-8xl font-bold mb-6 leading-none">Living <br><span class="text-outline">Harmony</span></h2>
+                            <div class="w-20 h-1 bg-[#f7a600] mb-8"></div>
+                            <p class="text-xl text-gray-200 mb-10 max-w-md font-light">Crafting intimate atmospheres. Our bespoke solutions for private residences blend warmth with architectural precision to create sanctuaries of light.</p>
+                            <button class="bg-white text-black px-10 py-4 uppercase text-xs font-bold tracking-[0.2em] hover:bg-[#f7a600] hover:text-white transition duration-300">
+                                View Residence
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2: Commercial -->
+                <div class="swiper-slide relative flex items-center">
+                    <div class="absolute inset-0 z-0">
+                        <img src="images/heroslider6.png" class="w-full h-full object-cover opacity-60" alt="Commercial Impact">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent z-10"></div>
+                    <div class="relative z-20 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2">
+                        <div class="animate-on-scroll" data-animate="animate__fadeInLeft">
+                            <span class="inline-block py-1 px-3 border border-white/30 rounded-full text-[10px] uppercase tracking-widest mb-6 backdrop-blur-sm">Commercial</span>
+                            <h2 class="text-5xl md:text-8xl font-bold mb-6 leading-none">Visual <br><span class="text-outline">Impact</span></h2>
+                            <div class="w-20 h-1 bg-[#f7a600] mb-8"></div>
+                            <p class="text-xl text-gray-200 mb-10 max-w-md font-light">Elevate the customer experience. Dynamic lighting systems designed for retail, hospitality, and corporate environments that demand attention.</p>
+                            <button class="bg-white text-black px-10 py-4 uppercase text-xs font-bold tracking-[0.2em] hover:bg-[#f7a600] hover:text-white transition duration-300">
+                                Explore Commercial
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3: Exterior -->
+                <div class="swiper-slide relative flex items-center">
+                    <div class="absolute inset-0 z-0">
+                        <img src="images/heroslider7.png" class="w-full h-full object-cover opacity-60" alt="Urban Landscapes">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent z-10"></div>
+                    <div class="relative z-20 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2">
+                        <div class="animate-on-scroll" data-animate="animate__fadeInLeft">
+                            <span class="inline-block py-1 px-3 border border-white/30 rounded-full text-[10px] uppercase tracking-widest mb-6 backdrop-blur-sm">Exterior</span>
+                            <h2 class="text-5xl md:text-8xl font-bold mb-6 leading-none">Urban <br><span class="text-outline">Icons</span></h2>
+                            <div class="w-20 h-1 bg-[#f7a600] mb-8"></div>
+                            <p class="text-xl text-gray-200 mb-10 max-w-md font-light">Transforming skylines. Powerful, weather-resistant exterior lighting that defines architecture and shape after dark.</p>
+                            <button class="bg-white text-black px-10 py-4 uppercase text-xs font-bold tracking-[0.2em] hover:bg-[#f7a600] hover:text-white transition duration-300">
+                                View Projects
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 4: Artistic -->
+                <div class="swiper-slide relative flex items-center">
+                    <div class="absolute inset-0 z-0">
+                        <img src="images/heroslider2.png" class="w-full h-full object-cover opacity-60" alt="Artistic Vision">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent z-10"></div>
+                    <div class="relative z-20 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2">
+                        <div class="animate-on-scroll" data-animate="animate__fadeInLeft">
+                            <span class="inline-block py-1 px-3 border border-white/30 rounded-full text-[10px] uppercase tracking-widest mb-6 backdrop-blur-sm">Artistic</span>
+                            <h2 class="text-5xl md:text-8xl font-bold mb-6 leading-none">Pure <br><span class="text-outline">Vision</span></h2>
+                            <div class="w-20 h-1 bg-[#f7a600] mb-8"></div>
+                            <p class="text-xl text-gray-200 mb-10 max-w-md font-light">Beyond function. We collaborate with artists and architects to create sculptural lighting installations that inspire and provoke.</p>
+                            <button class="bg-white text-black px-10 py-4 uppercase text-xs font-bold tracking-[0.2em] hover:bg-[#f7a600] hover:text-white transition duration-300">
+                                Discover Art
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination !bottom-10 !left-6 !w-auto !z-50 custom-swiper-pagination"></div>
+        </div>
+    </section>
+    
+
+    <!-- Clients Logo Section -->
+    <section class="py-20 bg-black border-t border-white/5">
+        <div class="container mx-auto px-6 animate-on-scroll" data-animate="animate__fadeIn">
+            <p class="text-center text-gray-500 text-xs uppercase tracking-[0.2em] mb-12">Trusted by Industry Leaders</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 items-center opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                <div class="flex justify-center"><i class="fab fa-apple text-5xl hover:text-white transition"></i></div>
+                <div class="flex justify-center"><i class="fab fa-google text-5xl hover:text-white transition"></i></div>
+                <div class="flex justify-center"><i class="fab fa-amazon text-5xl hover:text-white transition"></i></div>
+                <div class="flex justify-center"><i class="fab fa-microsoft text-5xl hover:text-white transition"></i></div>
+                <div class="flex justify-center"><i class="fab fa-airbnb text-5xl hover:text-white transition"></i></div>
+                <div class="flex justify-center"><i class="fab fa-uber text-5xl hover:text-white transition"></i></div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- NEW: Journal / Blog Section (RESTORED) -->
+    <section class="py-24 bg-[#080808] border-t border-white/5">
+        <div class="container mx-auto px-6 mb-12 flex justify-between items-end">
+            <div class="animate-on-scroll" data-animate="animate__fadeInLeft">
+                <p class="text-[#f7a600] font-mono text-xs tracking-widest uppercase mb-4">Journal</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Latest News</h2>
+            </div>
+            <div class="hidden md:flex gap-4 animate-on-scroll" data-animate="animate__fadeInRight">
+                <button class="blog-prev-btn w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition duration-300">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="blog-next-btn w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition duration-300">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6">
+            <div class="swiper blogSwiper pb-12 animate-on-scroll" data-animate="animate__fadeInUp">
+                <div class="swiper-wrapper">
+                    <!-- Blog 1 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-[300px] overflow-hidden mb-6">
+                                <img src="images/blog1.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Blog 1">
+                                <div class="absolute top-4 left-4 bg-white text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider">Oct 24</div>
+                            </div>
+                            <p class="text-xs text-[#f7a600] uppercase tracking-widest mb-2">Innovation</p>
+                            <h3 class="text-xl font-bold mb-3 group-hover:text-[#f7a600] transition leading-snug">The Future of Human Centric Lighting in Offices</h3>
+                            <a href="#" class="text-xs text-gray-400 border-b border-gray-700 pb-1 group-hover:text-white group-hover:border-white transition">Read Article</a>
+                        </div>
+                    </div>
+                    <!-- Blog 2 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-[300px] overflow-hidden mb-6">
+                                <img src="images/blog2.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Blog 2">
+                                <div class="absolute top-4 left-4 bg-white text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider">Oct 10</div>
+                            </div>
+                            <p class="text-xs text-[#f7a600] uppercase tracking-widest mb-2">Projects</p>
+                            <h3 class="text-xl font-bold mb-3 group-hover:text-[#f7a600] transition leading-snug">Behind the Scenes: Lighting the Azure Lounge</h3>
+                            <a href="#" class="text-xs text-gray-400 border-b border-gray-700 pb-1 group-hover:text-white group-hover:border-white transition">Read Article</a>
+                        </div>
+                    </div>
+                    <!-- Blog 3 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-[300px] overflow-hidden mb-6">
+                                <img src="images/blog3.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Blog 3">
+                                <div class="absolute top-4 left-4 bg-white text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider">Sep 28</div>
+                            </div>
+                            <p class="text-xs text-[#f7a600] uppercase tracking-widest mb-2">Events</p>
+                            <h3 class="text-xl font-bold mb-3 group-hover:text-[#f7a600] transition leading-snug">LUX at Milan Design Week 2024 Recap</h3>
+                            <a href="#" class="text-xs text-gray-400 border-b border-gray-700 pb-1 group-hover:text-white group-hover:border-white transition">Read Article</a>
+                        </div>
+                    </div>
+                    <!-- Blog 4 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="relative h-[300px] overflow-hidden mb-6">
+                                <img src="images/blog4.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Blog 4">
+                                <div class="absolute top-4 left-4 bg-white text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider">Sep 15</div>
+                            </div>
+                            <p class="text-xs text-[#f7a600] uppercase tracking-widest mb-2">Sustainability</p>
+                            <h3 class="text-xl font-bold mb-3 group-hover:text-[#f7a600] transition leading-snug">Achieving Net Zero with Smart LED Systems</h3>
+                            <a href="#" class="text-xs text-gray-400 border-b border-gray-700 pb-1 group-hover:text-white group-hover:border-white transition">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Blue CTA -->
+    <section class="bg-[#f7a600] py-24 text-center relative overflow-hidden group">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise.png')] opacity-20 mix-blend-overlay"></div>
+        <div class="absolute inset-0 bg-[#b37700] opacity-0 group-hover:opacity-100 transition duration-500"></div>
+        
+        <div class="relative z-10 container mx-auto px-6 animate-on-scroll" data-animate="animate__zoomIn">
+            <h2 class="text-3xl md:text-5xl font-bold mb-2 tracking-tight">Ready to illuminate your vision?</h2>
+            <h2 class="text-3xl md:text-5xl font-bold mb-10 tracking-tight text-white">Discuss your project with us.</h2>
+            <button class="bg-black text-white px-12 py-4 rounded-full font-bold uppercase text-xs tracking-widest transition transform hover:scale-105 hover:bg-white hover:text-[#f7a600] shadow-xl">
+                Contact Us
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Footer -->
+    <footer class="bg-[#020202] text-gray-400 py-24 border-t border-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
+                <div>
+                    <div class="text-3xl font-bold text-white mb-8 tracking-tighter">Starlight<span class="text-[#f7a600]">.</span></div>
+                    <p class="text-sm max-w-sm leading-relaxed mb-8">Manufacturing high-quality linear LED solutions for architects and designers. Powered by Meanwell.</p>
+                    <div class="space-y-2 text-sm">
+                        <p><i class="fas fa-map-marker-alt text-[#f7a600] w-6"></i> Office & Factory Address Here</p>
+                        <p><i class="fas fa-phone text-[#f7a600] w-6"></i> Sales: +91 98765 43210</p>
+                        <p><i class="fas fa-envelope text-[#f7a600] w-6"></i> info@starlightlinearled.com</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-6 text-lg">Subscribe to our newsletter</h3>
+                    <p class="text-xs mb-6">Get the latest technical updates and product launches.</p>
+                    <form class="flex border-b border-gray-700 pb-2 focus-within:border-[#f7a600] transition-colors">
+                        <input type="email" placeholder="Your Email Address" class="bg-transparent text-white px-4 py-2 w-full focus:outline-none placeholder-gray-600">
+                        <button class="text-white font-bold uppercase text-xs px-4 hover:text-[#f7a600] transition">Send</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-xs uppercase tracking-widest border-t border-gray-900 pt-16">
+                <div>
+                    <h4 class="text-white mb-6 font-bold">Solutions</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Outdoor</a></li>
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Indoor</a></li>
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Furniture</a></li>
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Hospitality</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white mb-6 font-bold">Technical</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-[#f7a600] transition">DMX Applications</a></li>
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Drivers & Controllers</a></li>
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Downloads</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white mb-6 font-bold">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-[#f7a600] transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Factory</a></li>
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white mb-6 font-bold">Legal</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-[#f7a600] transition">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-20 flex flex-col md:flex-row justify-between items-center text-xs text-gray-700">
+                <p>&copy; 2023 Starlight Linear LED. All rights reserved.</p>
+                <div class="flex items-center gap-2 mt-4 md:mt-0">
+                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span>Systems Operational</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div> <!-- End of #main-site -->
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+
+    <script>
+        // Check if libraries are loaded
+        document.addEventListener("DOMContentLoaded", (event) => {
+            if (typeof Swiper !== 'undefined' && typeof gsap !== 'undefined') {
+                initApp();
+            } else {
+                console.error("Libraries not loaded.");
+            }
+        });
+
+        function initApp() {
+            // --- Loading Animation Sequence ---
+            const tl = gsap.timeline();
+
+            // 1. Ignition: Beam stretches horizontally
+            tl.to("#ignition-beam", {
+                width: window.innerWidth < 640 ? "90%" : "60%",
+                duration: 1.2,
+                ease: "expo.inOut"
+            })
+            // 2. Power Flicker: Simulated LED power-up
+            .to("#ignition-beam", { 
+                opacity: 0.3, 
+                duration: 0.04, 
+                repeat: 3, 
+                yoyo: true 
+            })
+            // 3. Peak Brightness
+            .to("#ignition-beam", { 
+                opacity: 1, 
+                boxShadow: "0 0 60px 10px rgba(247, 166, 0, 1)", 
+                duration: 0.1 
+            })
+            // 4. Expansion: Beam vertical stretch to fill screen
+            .to("#ignition-beam", { 
+                height: "100%", 
+                width: "100%", 
+                opacity: 0, 
+                duration: 1.5, 
+                ease: "expo.inOut" 
+            }, "+=0.2")
+
+            // 5. Brand Reveal: Happens during beam expansion
+            .to("#brand-identity", { 
+                opacity: 1, 
+                scale: 1, 
+                duration: 1, 
+                ease: "power2.out" 
+            }, "-=1.2")
+            .to("#tagline", { 
+                opacity: 0.5, 
+                y: 0, 
+                duration: 1.2, 
+                ease: "power3.out" 
+            }, "-=0.3")
+
+            // 6. Transition to Main Site (Dark Theme)
+            .to("#intro-stage", { 
+                opacity: 0, 
+                duration: 1.2, 
+                ease: "power4.inOut", 
+                delay: 0.8 
+            })
+            .set("#intro-stage", { display: "none" })
+            .set("#main-site", { visibility: "visible" })
+            .to("#main-site", { 
+                opacity: 1, 
+                duration: 1 
+            }, "-=0.4");
+
+
+            // --- Swiper Initialization ---
+            const swiper = new Swiper(".mySwiper", {
+                slidesPerView: "auto",
+                spaceBetween: 30,
+                freeMode: true,
+                grabCursor: true,
+                navigation: {
+                    nextEl: ".swiper-next-btn",
+                    prevEl: ".swiper-prev-btn",
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 2.2,
+                        spaceBetween: 40,
+                    },
+                    1024: {
+                        slidesPerView: 3.2,
+                        spaceBetween: 50,
+                    },
+                },
+            });
+            
+            // --- Product Card Swiper Initialization ---
+            const productSwiper = new Swiper(".productSwiper", {
+                slidesPerView: 1.2,
+                spaceBetween: 20,
+                grabCursor: true,
+                navigation: {
+                    nextEl: ".product-next-btn",
+                    prevEl: ".product-prev-btn",
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2.2,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 3.2,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 4.2,
+                        spaceBetween: 30,
+                    },
+                },
+            });
+
+            // --- Blog Swiper Initialization ---
+            const blogSwiper = new Swiper(".blogSwiper", {
+                slidesPerView: 1.2,
+                spaceBetween: 30,
+                grabCursor: true,
+                navigation: {
+                    nextEl: ".blog-next-btn",
+                    prevEl: ".blog-prev-btn",
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2.2,
+                        spaceBetween: 30,
+                    },
+                    768: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 40,
+                    },
+                    1024: {
+                        slidesPerView: 3.2,
+                        spaceBetween: 40,
+                    },
+                },
+            });
+
+            // --- Testimonial Swiper Initialization ---
+            const testimonialSwiper = new Swiper(".testimonialSwiper", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                effect: "fade",
+                fadeEffect: { crossFade: true },
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".testimonialSwiper .swiper-pagination",
+                    clickable: true,
+                },
+            });
+
+            // --- Project Video Swiper Initialization ---
+            const projectVideoSwiper = new Swiper(".projectVideoSwiper", {
+                slidesPerView: 1,
+                effect: "fade",
+                fadeEffect: { crossFade: true },
+                loop: true,
+                speed: 1000,
+                navigation: {
+                    nextEl: ".project-video-next",
+                    prevEl: ".project-video-prev",
+                },
+                autoplay: {
+                    delay: 8000,
+                    disableOnInteraction: false,
+                },
+            });
+
+            // --- Hero Swiper Initialization (New) ---
+            const heroSwiper = new Swiper(".heroSwiper", {
+                slidesPerView: 1,
+                effect: "fade",
+                fadeEffect: { crossFade: true },
+                loop: true,
+                speed: 1500,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                on: {
+                    slideChangeTransitionStart: function () {
+                        // Re-trigger animations for active slide content
+                        const activeSlide = this.slides[this.activeIndex];
+                        const textContainer = activeSlide.querySelector('.hero-text-container');
+                        if(textContainer) {
+                            // Remove animated class to reset
+                            const children = textContainer.children;
+                            for (let i = 0; i < children.length; i++) {
+                                children[i].classList.remove('animate__animated', 'animate__fadeInUp');
+                                void children[i].offsetWidth; // Trigger reflow
+                                children[i].classList.add('animate__animated', 'animate__fadeInUp');
+                            }
+                        }
+                    }
+                }
+            });
+
+            // --- Bespoke Swiper Initialization ---
+            const bespokeSwiper = new Swiper(".bespoke-swiper", {
+                slidesPerView: 1,
+                effect: "fade", // Cinematic fade effect
+                fadeEffect: { crossFade: true },
+                speed: 1000,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".bespoke-swiper .swiper-pagination",
+                    clickable: true,
+                },
+            });
+
+
+            // --- GSAP Initialization ---
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Navbar Scroll Effect
+            const nav = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('bg-black/90', 'backdrop-blur-md', 'py-4');
+                    nav.classList.remove('py-6');
+                } else {
+                    nav.classList.remove('bg-black/90', 'backdrop-blur-md', 'py-4');
+                    nav.classList.add('py-6');
+                }
+            });
+
+            // Hero Animations
+            const heroTimeline = gsap.timeline();
+            heroTimeline.from(".hero-reveal", {
+                y: 100,
+                opacity: 0,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: "power3.out",
+                delay: 0.5
+            });
+
+            // Parallax Hero Background (Applied to the slider container now)
+            gsap.to("#hero-bg", {
+                scrollTrigger: {
+                    trigger: "header",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                },
+                y: 200,
+                scale: 1.1,
+                ease: "none"
+            });
+
+            // Category Cards Animation
+            const cards = gsap.utils.toArray('.category-card');
+            cards.forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%",
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            });
+
+            // --- Services Hover Interaction ---
+            const serviceLinks = document.querySelectorAll('.service-link');
+            const previewImg = document.getElementById('service-img-preview');
+            const caption = document.getElementById('service-img-caption');
+
+            serviceLinks.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    const newImg = link.getAttribute('data-img');
+                    const newTitle = link.querySelector('.service-title').textContent;
+                    
+                    // Simple fade swap
+                    previewImg.style.opacity = 0;
+                    setTimeout(() => {
+                        previewImg.src = newImg;
+                        previewImg.style.opacity = 1;
+                        caption.textContent = newTitle;
+                    }, 200);
+                });
+            });
+
+            // --- Project Filtering Logic ---
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('.project-item');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    projectItems.forEach(item => {
+                        const itemCategory = item.getAttribute('data-category');
+                        
+                        if (filterValue === 'all' || filterValue === itemCategory) {
+                            gsap.to(item, {
+                                duration: 0.4,
+                                opacity: 1,
+                                scale: 1,
+                                display: 'block',
+                                ease: "power2.out"
+                            });
+                        } else {
+                            gsap.to(item, {
+                                duration: 0.4,
+                                opacity: 0,
+                                scale: 0.95,
+                                display: 'none',
+                                ease: "power2.in"
+                            });
+                        }
+                    });
+                });
+            });
+
+            // --- Animation on Scroll Logic (Intersection Observer) ---
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animationClass = entry.target.dataset.animate || 'animate__fadeInUp';
+                        entry.target.classList.add('animate__animated', animationClass);
+                        entry.target.style.opacity = 1;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+        }
+    </script>
+</body>
+</html>
